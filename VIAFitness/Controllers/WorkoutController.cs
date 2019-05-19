@@ -53,7 +53,6 @@ namespace VIAFitness.Controllers
 
             try
             {
-                // TODO: Add insert logic here
                 var result = WorkoutProcessor.CreateWorkout(userId, createdWorkout.WorkoutType,createdWorkout.CreateDate);
                 return RedirectToAction("Index");
             }
@@ -71,17 +70,18 @@ namespace VIAFitness.Controllers
 
         // POST: Workout/Edit/5
         [HttpPost]
-        public ActionResult Edit(UpdateWorkoutViewModel updatedWorkout)
+        public ActionResult Edit(int id, UpdateWorkoutViewModel updatedWorkout)
         {
+            updatedWorkout.WorkoutId = id;
             try
             {
-                // TODO: Add update logic here
                 int success = WorkoutProcessor.UpdateWorkout(updatedWorkout.WorkoutId, updatedWorkout.WorkoutType, updatedWorkout.CreateDate);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                throw (ex);
+             //   return View();
             }
         }
 

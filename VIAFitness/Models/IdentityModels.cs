@@ -35,5 +35,9 @@ namespace VIAFitness.Models
         public System.Data.Entity.DbSet<VIAFitness.Models.DeleteWorkoutViewModel> DeleteWorkoutViewModels { get; set; }
 
         public System.Data.Entity.DbSet<VIAFitness.Models.UpdateWorkoutViewModel> UpdateWorkoutViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<ViaFitnessDataAccess.Models.UserModel> UserModels { get; set; }
+
+        public System.Data.Entity.DbSet<VIAFitness.Models.UserViewModel> UserViewModels { get; set; }
     }
 }

@@ -60,8 +60,8 @@ namespace ViaFitnessDataAccess.BusinessLogic
                 CreateDate = createDate
             };
 
-            string sql = @"UPDATE [dbo].[Workout] SET (Type,CreateDate) 
-                            values (@Type,@CreateDate) WHERE Id = @Id;";
+            string sql = @"UPDATE [dbo].[Workout] SET Type = @Type, CreateDate = @CreateDate
+                            WHERE Id = @Id;";
 
             return SQLDataAccess.ExecuteData(sql, data);
         }

@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Http;
+using System.Web.Mvc;
+using VIAFitness.Models;
 //using System.Web.Mvc;
 using ViaFitnessDataAccess.BusinessLogic;
 using ViaFitnessDataAccess.Models;
@@ -11,17 +12,22 @@ using ViaFitnessDataAccess.Models;
 namespace VIAFitness.Controllers
 {
     [Authorize]
-    public class UserController : ApiController
+    public class UserController : Controller
     {
 
-        // GET: User
-        public UserModel GetById(string id)
+        public ActionResult Index()
         {
-            string userId = RequestContext.Principal.Identity.GetUserId();
-            //UserData
-            
 
-            return UserProcessor.GetUserById(userId);
+            List<UserModel> users = UserProcessor.LoadUser();
+            List<UserViewModel> displayedUsers = new List<UserViewModel>();
+            foreach(UserModel user in users)
+            {
+                UserViewModel addUser = new UserViewModel { Id = user.Id, Email = user.EmailAddress, FirstName = user.FirstName, LastName = user.LastName };
+                displayedUsers.Add(addUser);
+            }
+
+            return View(displayedUsers);
         }
+
     }
 }
